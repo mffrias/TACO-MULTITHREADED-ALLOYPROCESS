@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="alloyRunner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/alloyRunner_jar</output-path>
+    <root id="archive" name="alloyRunner.jar">
+      <element id="module-output" name="alloyRunner" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../DynAlloy4-Runner/dynalloy4/dist/dynalloy4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
