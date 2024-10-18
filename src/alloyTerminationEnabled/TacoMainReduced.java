@@ -15,6 +15,9 @@ public class TacoMainReduced {
         // Starts dynalloy to alloy tranlation and alloy verification
 
         String alsFileName = args[0];
+
+        //Initialize the timer
+        long startTime = System.currentTimeMillis();
 //
         AlloyStage alloy_stage = new AlloyStage(alsFileName);
         alloy_stage.execute();
@@ -31,6 +34,10 @@ public class TacoMainReduced {
 
         String tacoAnalysisResultString = tacoAnalysisResult.get_alloy_analysis_result().getAlloy_solution().toString();
 
+        //Finish the timer
+        long endTime = System.currentTimeMillis();
+        int durationInSeconds = (int) ((endTime - startTime) / 1000);
+
         File verdictFile;
 
         if (tacoAnalysisResult.get_alloy_analysis_result().isSAT()) {
@@ -41,6 +48,7 @@ public class TacoMainReduced {
                     FileWriter myWriter = new FileWriter(alsFileName);
                     myWriter.write("-THE OUTCOME WAS SAT- ");
                     myWriter.write(tacoAnalysisResultString);
+                    myWriter.write("\nDuration: " + durationInSeconds + " seconds");
                     myWriter.close();
                 } else {
                     System.out.println("File already exists.");
@@ -57,6 +65,7 @@ public class TacoMainReduced {
                     if (verdictFile.createNewFile()) {
                         FileWriter myWriter = new FileWriter(alsFileName);
                         myWriter.write("-THE OUTCOME WAS UNSAT-");
+                        myWriter.write("\nDuration: " + durationInSeconds + " seconds");
                         myWriter.close();
                     } else {
                         System.out.println("File already exists.");
@@ -72,6 +81,7 @@ public class TacoMainReduced {
                     if (verdictFile.createNewFile()) {
                         FileWriter myWriter = new FileWriter(alsFileName);
                         myWriter.write("TO");
+                        myWriter.write("\nDuration: " + durationInSeconds + " seconds");
                         myWriter.close();
                     } else {
                         System.out.println("File already exists.");
